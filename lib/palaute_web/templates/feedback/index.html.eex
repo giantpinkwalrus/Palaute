@@ -1,0 +1,6 @@
+<%= if @good do  %>
+  <h1 class="center-all jumbo"><i class="fas fa-check-circle green margin-right"></i>Palaute tallennettu</h1>
+<% else %>
+  <h1 class="center-all jumbo"><i class="fas fa-times-circle red margin-right"></i>Palautteen tallentamisessa tapahtui virhe.</h1>
+<% end %>
+<a class="center-all" href="/">Jätä toinen palaute</a>

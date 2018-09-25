@@ -1,0 +1,23 @@
+    <h1 id="heading">Jätä palautetta</h1>
+    <div id="container">
+      <form id="form" action="/submit-feedback" method="post">
+        <input type="hidden" value="<%= @token %>" name="_csrf_token" />
+        <div class="group">
+          <label for="name">Nimi</label>
+          <input name="name" id="name" placeholder="Tämä kenttä on vapaaehtoinen" type="text" />
+        </div>
+        <div class="group">
+          <textarea name="feedback" required rows="5" id="text" placeholder="Tämä kenttä laajenee automaattisesti"></textarea>
+        </div>
+        <div>
+          <input id="submit" value="Lähetä" type="submit" />
+        </div>
+      </form>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+  autosize(document.getElementById('text'));
+});
+    </script>
+
