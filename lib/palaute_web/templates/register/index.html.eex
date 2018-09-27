@@ -1,0 +1,42 @@
+<h1 id="heading">Rekisteröidy</h1>
+<form id="reg_form" action="/register/<%= @regtoken %>" method="post">
+  <input type="hidden" value="<%= @token %>" name="_csrf_token" />
+  <div class="group">
+    <label for="username">
+      Käyttäjätunnus
+    </label>
+    <input
+           name="name"
+           id="name"
+           autocomplete="email"
+           placeholder="Käyttäjätunnus"
+           type="text" required />
+  </div>
+  <div class="group">
+    <label for="password1">
+      Salasana
+    </label>
+    <input
+           class="input"
+           name="password"
+           id="password1"
+           placeholder="Salasana"
+           autocomplete="password"
+           type="password" required />
+  </div>
+  <div class="group">
+    <label for="password2">
+      Salasana uudestaan
+    </label>
+    <input
+           class="input"
+           name="password_confirm"
+           id="password2"
+           autocomplete="password"
+           placeholder="Salasana uudestaan"
+           type="password" required />
+  </div>
+  <div>
+    <input id="submit" value="Rekisteröidy" type="submit" />
+  </div>
+</form>

@@ -1,5 +1,4 @@
 defmodule PalauteWeb.Redirector do
-  import Plug.Conn
 
   @spec init(Keyword.t) :: Keyword.t
   def init([to: _] = opts), do: opts
@@ -10,4 +9,5 @@ defmodule PalauteWeb.Redirector do
     conn
     |> Phoenix.Controller.redirect(opts)
   end
+
 end

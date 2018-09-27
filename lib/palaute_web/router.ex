@@ -9,6 +9,9 @@ defmodule PalauteWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :admin do
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -19,6 +22,8 @@ defmodule PalauteWeb.Router do
     get "/", PageController, :index
     get "/submit-feedback", Redirector, to: "/"
     post "/submit-feedback", FeedbackController, :index
+    get "/register/:id", RegisterController, :index
+    post "/register/:id", RegisterController, :register
   end
 
   # Other scopes may use custom stacks.
