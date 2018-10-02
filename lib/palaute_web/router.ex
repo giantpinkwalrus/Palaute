@@ -10,6 +10,7 @@ defmodule PalauteWeb.Router do
   end
 
   pipeline :admin do
+    plug :is_authenticated
   end
 
   pipeline :api do
@@ -26,6 +27,12 @@ defmodule PalauteWeb.Router do
     post "/register/:id", RegisterController, :register
     get "/login", LoginController, :index
     post "/login", LoginController, :login
+  end
+
+  scope "/admin", PalauteWeb do
+    pipe_through [:browser, :admin]
+
+    get "/", DashboardController, :index
   end
 
   # Other scopes may use custom stacks.
