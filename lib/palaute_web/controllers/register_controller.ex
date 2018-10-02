@@ -1,6 +1,6 @@
 defmodule PalauteWeb.RegisterController do
   use PalauteWeb, :controller
-  alias Palaute.Repo
+  alias Palaute.{Repo, User, RegToken}
   import Ecto.Query
 
   def index(conn, %{"id" => token}) do
@@ -16,6 +16,21 @@ defmodule PalauteWeb.RegisterController do
     end
   end 
 
+  def registerUser(name, password, password_confirm, token) do
+    user_changeset = User.signup(%User{}, %{
+      name: name,
+      password: password,
+      password_confirm: password_confirm
+    })
+    token_changeset = RegToken.changeset(token, %{
+      used: true
+    })
+    Ecto.Multi.new
+    |> Ecto.Multi.insert(:user, user_changeset)
+    |> Ecto.Multi.update(:token, token_changeset)
+    |> Repo.transaction
+  end
+
   def dumpId(id) do
     Ecto.UUID.dump(id)
   end
@@ -26,8 +41,8 @@ defmodule PalauteWeb.RegisterController do
     "password" => password,
     "password_confirm" => password_confirm
   }) do
-    with {:ok, dump}  <- dumpId(id),
-      {:ok, token} <- findRegToken(id)
+         with {:ok, token} <- findRegToken(id),
+         {:ok, token_and_user} <- registerUser(name, password, password_confirm, token)
     do
       render conn, "reg_success.html"
     else

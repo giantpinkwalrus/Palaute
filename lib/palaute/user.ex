@@ -6,6 +6,7 @@ defmodule Palaute.User do
   schema "user" do
     field :name, :string
     field :password, :string
+    field :password_confirm, :string, virtual: true
     timestamps()
   end
 

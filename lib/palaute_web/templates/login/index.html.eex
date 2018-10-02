@@ -1,0 +1,30 @@
+<h1 id="heading">Kirjaudu sisään</h1>
+<form id="reg_form" action="/login" method="post">
+  <input type="hidden" value="<%= @token %>" name="_csrf_token" />
+  <div class="group">
+    <label for="username">
+      Käyttäjätunnus
+    </label>
+    <input
+           name="name"
+           id="name"
+           autocomplete="email"
+           placeholder="Käyttäjätunnus"
+           type="text" required />
+  </div>
+  <div class="group">
+    <label for="password">
+      Salasana
+    </label>
+    <input
+           class="input"
+           name="password"
+           id="password"
+           placeholder="Salasana"
+           autocomplete="password"
+           type="password" required />
+  </div>
+  <div>
+    <input id="submit" value="Rekisteröidy" type="submit" />
+  </div>
+</form>

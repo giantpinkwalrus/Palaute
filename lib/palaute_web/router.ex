@@ -24,6 +24,8 @@ defmodule PalauteWeb.Router do
     post "/submit-feedback", FeedbackController, :index
     get "/register/:id", RegisterController, :index
     post "/register/:id", RegisterController, :register
+    get "/login", LoginController, :index
+    post "/login", LoginController, :login
   end
 
   # Other scopes may use custom stacks.
