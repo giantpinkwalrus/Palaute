@@ -10,7 +10,7 @@ defmodule PalauteWeb.Router do
   end
 
   pipeline :admin do
-    plug :is_authenticated
+    plug PalauteWeb.Authenticator
   end
 
   pipeline :api do
