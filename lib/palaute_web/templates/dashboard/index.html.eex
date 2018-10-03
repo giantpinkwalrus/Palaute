@@ -1,1 +1,8 @@
 Todo dashboard
+<%= for feedback <- @feedback do %>
+  <p><%= feedback.feedback %></p>
+<% end %>
+<nav>
+  <a href="/admin?first=<%= hd(@feedback) |> Map.get(:id) %>">Takaisin</a>
+  <a href="/admin?last=<%= Enum.take(@feedback, -1) |> hd |> Map.get(:id) %>">Eteenpäin</a>
+</nav>
