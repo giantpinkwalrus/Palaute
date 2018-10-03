@@ -25,6 +25,6 @@
            type="password" required />
   </div>
   <div>
-    <input id="submit" value="Rekisteröidy" type="submit" />
+    <input id="submit" value="Kirjaudu sisään" type="submit" />
   </div>
 </form>
