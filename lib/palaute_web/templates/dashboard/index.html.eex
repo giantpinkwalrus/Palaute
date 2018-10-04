@@ -1,8 +1,19 @@
 Todo dashboard
 <%= for feedback <- @feedback do %>
-  <p><%= feedback.feedback %></p>
+  <section>
+    <header>
+      <div><%= feedback.name %></div>
+      <div><%= feedback.inserted_at %></div>
+    <header>
+    <p><%= feedback.feedback %></p>
+  </section>
+  <hr/>
 <% end %>
 <nav>
-  <a href="/admin?first=<%= hd(@feedback) |> Map.get(:id) %>">Takaisin</a>
-  <a href="/admin?last=<%= Enum.take(@feedback, -1) |> hd |> Map.get(:id) %>">Eteenpäin</a>
+  <%= if !@can_back do %>
+    <a href="/admin?first=<%= hd(@feedback) |> Map.get(:id) %>">Takaisin</a>
+  <% end %>
+  <%= if !@can_forward do %>
+    <a href="/admin?last=<%= Enum.take(@feedback, -1) |> hd |> Map.get(:id) %>">Eteenpäin</a>
+  <% end %>
 </nav>
